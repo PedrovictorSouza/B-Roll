@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App'
 import { describe, it, expect } from 'vitest'
 
@@ -30,5 +30,12 @@ describe('App Layout', () => {
     const { container } = render(<App />)
     const main = container.querySelector('.layout-container')
     expect(main).toHaveClass('layout-container')
+  })
+
+  it('renders debug kits', () => {
+    render(<App />)
+    expect(screen.getByTestId('bounding-box-kit')).toBeInTheDocument()
+    expect(screen.getByTestId('coordinate-grid-kit')).toBeInTheDocument()
+    expect(screen.getByTestId('debug-kit')).toBeInTheDocument()
   })
 })
