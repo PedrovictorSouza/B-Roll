@@ -27,10 +27,31 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
 }
 
 .edition-panel {
   background-color: #111;
   border-top: 1px solid #333;
   overflow-y: auto;
+}
+
+.video-stage {
+  width: min(100%, 1280px);
+  aspect-ratio: 16 / 9;
+  max-height: 100%;
+  position: relative;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.video-stage video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background-color: #000;
 }

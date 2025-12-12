@@ -38,4 +38,9 @@ describe('App Layout', () => {
     expect(screen.getByTestId('coordinate-grid-kit')).toBeInTheDocument()
     expect(screen.getByTestId('debug-kit')).toBeInTheDocument()
   })
+
+  it('renders editor progress bar in edition panel', () => {
+    render(<App />)
+    expect(screen.getByRole('progressbar')).toBeInTheDocument()
+  })
 })
