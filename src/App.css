@@ -1,0 +1,36 @@
+.layout-container {
+  display: grid;
+  grid-template-columns: 20% 80%; /* 20% esquerda, 80% direita */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar-left {
+  background-color: #1a1a1a;
+  border-right: 1px solid #333;
+  height: 100%;
+  overflow-y: auto; /* Permite scroll apenas dentro da sidebar se necessário */
+}
+
+.content-right {
+  display: grid;
+  grid-template-rows: 70% 30%; /* 70% Vídeo, 30% Painel */
+  height: 100%;
+  overflow: hidden;
+}
+
+.video-area {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.edition-panel {
+  background-color: #111;
+  border-top: 1px solid #333;
+  overflow-y: auto;
+}
