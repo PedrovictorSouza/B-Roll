@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+// Adapters removidos pois agora assumimos MP4 nativo
 
-export function VideoContainer({ src, videoRef, events = {} }) {
+export function VideoContainer({ src, videoRef, events = {}, shouldConvert = false }) {
   const [hasError, setHasError] = useState(false)
+  
+  // Simplificação: VideoContainer agora foca apenas em reproduzir
+  // Se futuramente precisarmos de conversão, reintroduzimos o Adapter via injeção de dependência
+  // para não acoplar a UI com infraestrutura pesada (ffmpeg).
 
   const handleError = () => {
     setHasError(true)

@@ -7,7 +7,8 @@ import { MediaControls } from './features/editor/ui/MediaControls'
 import { VideoContainer } from './features/editor/ui/VideoContainer'
 import { useMediaPlayer } from './features/editor/application/useMediaPlayer'
 import { VideoTimeline } from './features/editor/domain/VideoTimeline'
-import widescreenVideo from './assets/videos/widescreen-preview.mp4'
+// Usando o arquivo original que sabemos que funcionava
+import video1 from './assets/videos/widescreen-preview.mp4'
 
 function App() {
   const { 
@@ -34,7 +35,7 @@ function App() {
           <div className="video-area">
             {/* Vídeo */}
             <VideoContainer 
-              src={widescreenVideo}
+              src={video1} 
               videoRef={videoRef}
               events={videoEvents}
             />
