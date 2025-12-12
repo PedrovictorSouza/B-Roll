@@ -1,6 +1,16 @@
 import { ProgressBar } from './ProgressBar'
+import { formatTime } from '../domain/timeUtils'
 
-export function MediaControls({ percentage, isPlaying, onPlayPause, onStop }) {
+const BUTTON_STYLE = {
+  cursor: 'pointer',
+  padding: '5px 15px',
+  backgroundColor: '#333',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '4px'
+}
+
+export function MediaControls({ percentage, isPlaying, onPlayPause, onStop, currentTime = 0, duration = 0 }) {
   return (
     <div className="media-controls" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
       {/* Barra de Progresso no topo */}
@@ -10,14 +20,7 @@ export function MediaControls({ percentage, isPlaying, onPlayPause, onStop }) {
       <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <button 
           onClick={onPlayPause}
-          style={{ 
-            cursor: 'pointer', 
-            padding: '5px 15px',
-            backgroundColor: '#333',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '4px'
-          }}
+          style={BUTTON_STYLE}
           aria-label={isPlaying ? "Pause" : "Play"}
         >
           {isPlaying ? "Pause" : "Play"}
@@ -25,20 +28,23 @@ export function MediaControls({ percentage, isPlaying, onPlayPause, onStop }) {
         
         <button 
           onClick={onStop}
-          style={{ 
-            cursor: 'pointer', 
-            padding: '5px 15px',
-            backgroundColor: '#333',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '4px'
-          }}
+          style={BUTTON_STYLE}
           aria-label="Stop"
         >
           Stop
         </button>
+
+        <div 
+          style={{ 
+            color: '#aaa', 
+            fontSize: '12px', 
+            fontFamily: 'monospace',
+            marginLeft: 'auto' // Empurra para a direita se container tiver width fixo ou flex-grow
+          }}
+        >
+          {formatTime(currentTime)} / {formatTime(duration)}
+        </div>
       </div>
     </div>
   )
 }
-

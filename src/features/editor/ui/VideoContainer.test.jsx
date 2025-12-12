@@ -36,4 +36,11 @@ describe('VideoContainer UI', () => {
     fireEvent.loadedMetadata(video)
     expect(events.onLoadedMetadata).toHaveBeenCalled()
   })
+
+  it('shows error message on load error', () => {
+    render(<VideoContainer src="invalid.mov" />)
+    const video = screen.getByTestId('main-video')
+    fireEvent.error(video)
+    expect(screen.getByText(/erro ao carregar vídeo/i)).toBeInTheDocument()
+  })
 })

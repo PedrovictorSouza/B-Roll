@@ -11,6 +11,9 @@
   border-right: 1px solid #333;
   height: 100%;
   overflow-y: auto; /* Permite scroll apenas dentro da sidebar se necessário */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .content-right {
@@ -54,4 +57,33 @@
   object-fit: contain;
   display: block;
   background-color: #000;
+}
+
+.sidebar-left__top {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 0 0 120px;
+}
+
+.sidebar-left__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.sidebar-left__button {
+  background: #4a90e2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.sidebar-left__bottom {
+  flex: 1;
+  padding: 1rem;
+  border-top: 1px solid #2f2f2f;
 }

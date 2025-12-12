@@ -7,7 +7,7 @@ import { MediaControls } from './features/editor/ui/MediaControls'
 import { VideoContainer } from './features/editor/ui/VideoContainer'
 import { useMediaPlayer } from './features/editor/application/useMediaPlayer'
 import { VideoTimeline } from './features/editor/domain/VideoTimeline'
-import video1 from './assets/videos/video1.mov'
+import widescreenVideo from './assets/videos/widescreen-preview.mp4'
 
 function App() {
   const { 
@@ -34,7 +34,7 @@ function App() {
           <div className="video-area">
             {/* Vídeo */}
             <VideoContainer 
-              src={video1} 
+              src={widescreenVideo}
               videoRef={videoRef}
               events={videoEvents}
             />
@@ -52,7 +52,9 @@ function App() {
                   percentage={timeline.percentage} 
                   isPlaying={isPlaying} 
                   onPlayPause={togglePlay} 
-                  onStop={stop} 
+                  onStop={stop}
+                  currentTime={currentTime}
+                  duration={duration} 
                 />
               </div>
             </div>
