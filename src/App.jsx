@@ -4,49 +4,42 @@ import { CoordinateGridKit } from './components/kits/CoordinateGridKit'
 import { DebugKit } from './components/kits/DebugKit'
 import { DebugProvider } from './contexts/DebugContext'
 import { MediaControls } from './features/editor/ui/MediaControls'
-import widescreenVideo from './assets/videos/widescreen-preview.mp4'
+import { VideoContainer } from './features/editor/ui/VideoContainer'
+import { useMediaPlayer } from './features/editor/application/useMediaPlayer'
+import { VideoTimeline } from './features/editor/domain/VideoTimeline'
+import video1 from './assets/videos/video1.mov'
 
 function App() {
+  const { 
+    videoRef, 
+    isPlaying, 
+    currentTime, 
+    duration, 
+    togglePlay, 
+    stop, 
+    videoEvents 
+  } = useMediaPlayer()
+
+  const timeline = new VideoTimeline({ duration })
+  timeline.updateProgress(currentTime)
+
   return (
     <DebugProvider>
       <main className="layout-container">
         <aside className="sidebar-left">
           {/* Ferramentas */}
-          <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <div>Ferramentas</div>
-            <button
-              data-testid="add-intervention"
-              type="button"
-              style={{
-                background: '#4a90e2',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px',
-                padding: '0.5rem 1rem',
-                cursor: 'pointer'
-              }}
-            >
-              Adicionar intervenção
-            </button>
-          </div>
+          <div style={{ padding: '1rem' }}>Ferramentas</div>
         </aside>
         <section className="content-right">
           <div className="video-area">
-            <div className="video-stage">
-              <video
-                data-testid="widescreen-video"
-                src={widescreenVideo}
-                preload="metadata"
-                controls
-                playsInline
-                onLoadedData={(event) => event.currentTarget.pause()}
-              >
-                <source src={widescreenVideo} type="video/mp4" />
-                Seu navegador não suporta vídeos HTML5.
-              </video>
-              <CoordinateGridKit />
-            </div>
+            {/* Vídeo */}
+            <VideoContainer 
+              src={video1} 
+              videoRef={videoRef}
+              events={videoEvents}
+            />
             <BoundingBoxKit />
+            <CoordinateGridKit />
           </div>
           <div className="edition-panel">
             {/* Painel */}
@@ -56,10 +49,10 @@ function App() {
               {/* Media Controls Integrados */}
               <div style={{ marginTop: '20px' }}>
                 <MediaControls 
-                  percentage={30} 
-                  isPlaying={false} 
-                  onPlayPause={() => console.log('Toggle Play')} 
-                  onStop={() => console.log('Stop')} 
+                  percentage={timeline.percentage} 
+                  isPlaying={isPlaying} 
+                  onPlayPause={togglePlay} 
+                  onStop={stop} 
                 />
               </div>
             </div>
